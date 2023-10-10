@@ -11,7 +11,7 @@
   },
   "author": "Daniil Bobrov",
   "license": "ISC",
-  "type" : "module",
+  "type": "module",
   "dependencies": {
     "commander": "^11.0.0"
   }
