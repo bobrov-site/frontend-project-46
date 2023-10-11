@@ -12,4 +12,4 @@ program
   .action((file1, file2) => {
     console.log(genDiff(file1, file2))
   })
-program.parse()
+program.parse(process.argv)
