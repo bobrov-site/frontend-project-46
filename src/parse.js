@@ -1,6 +1,11 @@
+import { readFile } from 'node:fs'
 const parseFile = (file) => {
-    const data = fs.readFileSync(file, 'utf-8')
-    const parsedData = JSON.parse(data)
-    return parsedData
+    readFile(file, (err, data) => {
+        if (err) {
+            throw err
+        }
+        const parsedData = JSON.parse(data)
+        return parsedData
+    })
 }
 export default parseFile
