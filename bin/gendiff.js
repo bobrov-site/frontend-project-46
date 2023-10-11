@@ -9,4 +9,7 @@ program
   .version('0.0.1')
   .option('-f, --format <type>', 'output format')
   .arguments('<file1path1> <filepath2>')
+  .action((file1, file2) => {
+    console.log(genDiff(file1, file2))
+  })
 program.parse()
