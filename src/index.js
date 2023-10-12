@@ -37,14 +37,14 @@ const makeTree = (comparedData) => {
     let tree = '{\n'
     for (const key of keys) {
         if (comparedData[key].status === 'deleted') {
-            tree += `- ${key}: ${comparedData[key].value1}\n`
+            tree += ` - ${key}: ${comparedData[key].value1}\n`
         }
         if (comparedData[key].status === 'updated') {
-            tree += `- ${key}: ${comparedData[key].value1}\n`
-            tree += `+ ${key}: ${comparedData[key].value2}\n`
+            tree += ` - ${key}: ${comparedData[key].value1}\n`
+            tree += ` + ${key}: ${comparedData[key].value2}\n`
         }
         if (comparedData[key].status === 'added') {
-            tree += `+ ${key}: ${comparedData[key].value2}\n`
+            tree += ` + ${key}: ${comparedData[key].value2}\n`
         }   
     }
     tree += '}'
@@ -59,6 +59,7 @@ const genDiff = (file1, file2) => {
     const sortedData2 = sortObject(data2)
     const comparedData = compareData(sortedData1, sortedData2)
     const tree = makeTree(comparedData)
+    return tree
 }
 
 export default genDiff
