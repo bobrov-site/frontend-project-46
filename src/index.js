@@ -28,6 +28,14 @@ const compareData = (data1, data2) => {
     console.log(comparedData)
 }
 
+const makeTree = (comparedData) => {
+    const keys = Object.keys(comparedData)
+    const string = ''
+    for (const key of keys) {
+        
+    }
+}
+
 // {
     // verbose: true +
 //     "host": "hexlet.io", +
