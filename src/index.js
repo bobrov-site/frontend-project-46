@@ -36,24 +36,14 @@ const makeTree = (comparedData) => {
     }
 }
 
-// {
-    // verbose: true +
-//     "host": "hexlet.io", +
-//     "timeout": 50, +
-//     "proxy": "123.234.53.22", +
-//     "follow": false +
-// }
-
 const genDiff = (file1, file2) => {
     const data1 = parseFile(file1)
     const data2 = parseFile(file2)
     const sortedData1 = sortObject(data1)
     const sortedData2 = sortObject(data2)
     const comparedData = compareData(sortedData1, sortedData2)
+    const tree = makeTree(comparedData)
     console.log(comparedData)
-    //has https://lodash.com/docs/4.17.15#has
-    //
-    
 }
 
 export default genDiff
