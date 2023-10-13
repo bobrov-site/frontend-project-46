@@ -13,21 +13,22 @@ const compareData = (data1, data2) => {
   const uniqKeys = _.union(Object.keys(data1), Object.keys(data2));
   const comparedData = uniqKeys.map((key) => {
     if (!_.has(data2, key)) {
-      key = { name: key, status: 'deleted', value1: data1[key].value };
+      return { name: key, status: 'deleted', value1: data1[key] };
     }
     if (!_.has(data1, key) && _.has(data2, key)) {
-      key = { name: key, status: 'added', value2: data2[key].value };
+      return { name: key, status: 'added', value2: data2[key] };
     }
-    if (_.has(data2, key) && data1[key].value !== data2[key].value && data1[key].value !== undefined) {
-      key = {
-        name: key, status: 'updated', value1: data1[key].value, value2: data2[key].value,
+    if (_.has(data2, key) && data1[key] !== data2[key] && data1[key] !== undefined) {
+      return {
+        name: key, status: 'updated', value1: data1[key], value2: data2[key],
       };
     }
-    if (_.has(data2, key) && data1[key].value === data2[key].value) {
-      key = { name: key, status: 'same', value1: data1[key].value };
+    if (_.has(data2, key) && data1[key] === data2[key]) {
+      return { name: key, status: 'same', value1: data1[key] };
     }
     return key;
   });
+  console.log(comparedData, 'com data')
   return comparedData;
 };
 
