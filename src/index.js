@@ -2,14 +2,14 @@ import parseFile from "./parse.js"
 import _ from "lodash"
 //rename to Data
 const sortData = (obj) => {
+    const sorted = {}
     const keys = Object.keys(obj).sort()
-    const data = keys.map((key) => key = { name: key, value: obj[key] })
-    return data
+    keys.map((key) => sorted[key] = { name: key, value: obj[key] })
+    return sorted
 }
 
 const compareData = (data1, data2) => {
-    const keys = [Object.keys(data1), Object.keys(data2)].flat()
-    const uniqKeys = _.uniq(keys)
+    const uniqKeys = _.union(Object.keys(data1), Object.keys(data2))
     const comparedData = uniqKeys.map((key) => {
         if (!_.has(data2, key)) {
             key = {name: key ,status: 'deleted', value1: data1[key]}
