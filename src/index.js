@@ -31,23 +31,30 @@ const compareData = (data1, data2) => {
     return comparedData
 }
 
+const addMargin = (marginCount, margin = ' ') => {
+    margin = _.repeat(margin, marginCount)
+    return margin
+}
+
 const makeTree = (comparedData) => {
-    const keys = Object.keys(comparedData)
-    let tree = '{\n'
-    for (const key of keys) {
-        if (comparedData[key].status === 'deleted') {
-            tree += ` - ${key}: ${comparedData[key].value1}\n`
+    const data = comparedData.map((item) => {
+        if (item.status === 'deleted') {
+            item = addMargin(2) + `- ${item.name}: ${item.value1}`
         }
-        if (comparedData[key].status === 'updated') {
-            tree += ` - ${key}: ${comparedData[key].value1}\n`
-            tree += ` + ${key}: ${comparedData[key].value2}\n`
+        if (item.status === 'added') {
+            item = addMargin(2) + `+ ${item.name}: ${item.value2}`
         }
-        if (comparedData[key].status === 'added') {
-            tree += ` + ${key}: ${comparedData[key].value2}\n`
-        }   
-    }
-    tree += '}'
-    return tree
+        if (item.status === 'updated') {
+            const str1 = addMargin(2) + `- ${item.name}: ${item.value1}`
+            const str2 = addMargin(2) + `+ ${item.name}: ${item.value2}`
+            return `${str1}\n${str2}`
+        }
+        if (item.status === 'same') {
+            item = addMargin(4) + `${item.name}: ${item.value1}`
+        }
+        return item
+    })
+    return '{\n' + data.join(' \n') + '\n}'
 }
 
 const genDiff = (file1, file2) => {
