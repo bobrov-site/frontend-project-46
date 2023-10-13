@@ -31,18 +31,15 @@ const compareData = (data1, data2) => {
   return comparedData;
 };
 
-const addMargin = (marginCount, margin = ' ') => {
-  margin = _.repeat(margin, marginCount);
-  return margin;
-};
+const addMargin = (marginCount, margin = ' ') => _.repeat(margin, marginCount);
 
 const makeTree = (comparedData) => {
   const data = comparedData.map((item) => {
     if (item.status === 'deleted') {
-      item = `${addMargin(2)}- ${item.name}: ${item.value1}`;
+      return `${addMargin(2)}- ${item.name}: ${item.value1}`;
     }
     if (item.status === 'added') {
-      item = `${addMargin(2)}+ ${item.name}: ${item.value2}`;
+      return `${addMargin(2)}+ ${item.name}: ${item.value2}`;
     }
     if (item.status === 'updated') {
       const str1 = `${addMargin(2)}- ${item.name}: ${item.value1}`;
@@ -50,7 +47,7 @@ const makeTree = (comparedData) => {
       return `${str1}\n${str2}`;
     }
     if (item.status === 'same') {
-      item = `${addMargin(4)}${item.name}: ${item.value1}`;
+      return `${addMargin(4)}${item.name}: ${item.value1}`;
     }
     return item;
   });
