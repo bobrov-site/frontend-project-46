@@ -1,13 +1,10 @@
 import parseFile from "./parse.js"
 import _ from "lodash"
-
+//rename to Data
 const sortObject = (obj) => {
-    const newObj = {}
     const keys = Object.keys(obj).sort()
-    for (const key of keys) {
-        newObj[key] = obj[key]
-    }
-    return newObj
+    const data = keys.map((key) => key = { name: key, value: obj[key] })
+    return data
 }
 
 const compareData = (data1, data2) => {
