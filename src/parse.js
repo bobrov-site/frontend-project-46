@@ -7,8 +7,11 @@ const getFilePath = (file) => path.resolve(cwd(), file);
 const getFileType = (file) => path.extname(file);
 
 const getFileParse = (data, fileType) => {
-  if (fileType === '.json') {
-    return JSON.parse(data);
+  switch (fileType) {
+    case '.json':
+      return JSON.parse(data);
+    default:
+      throw new Error(`Unknown extension: '${fileType}'!`);
   }
 };
 
