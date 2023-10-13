@@ -13,26 +13,25 @@ const sortObject = (obj) => {
 const compareData = (data1, data2) => {
     const keys = [Object.keys(data1), Object.keys(data2)].flat()
     const uniqKeys = _.uniq(keys)
-    const comparedData = {}
-    for (const key of uniqKeys) {
+    const comparedData = uniqKeys.map((key) => {
         if (!_.has(data2, key)) {
-            comparedData[key] = {status: 'deleted', value1: data1[key]}
+            key = {name: key ,status: 'deleted', value1: data1[key]}
         }
         if (!_.has(data1, key) && _.has(data2, key)) {
-            comparedData[key] = {status: 'added', value2: data2[key]}
+            key = {name: key ,status: 'added', value2: data2[key]}
         }
         if (_.has(data2, key) && data1[key] !== data2[key] && data1[key] !== undefined) {
-            comparedData[key] = {status: 'updated', value1: data1[key], value2: data2[key]}
+            key = {name: key ,status: 'updated', value1: data1[key], value2: data2[key]}
         }
         if (_.has(data2, key) && data1[key] === data2[key]) {
-            comparedData[key] = {status: 'same', value1: data1[key]}
+            key = {name: key ,status: 'same', value1: data1[key]}
         }
-    }
+        return key
+    })
     return comparedData
 }
 
 const makeTree = (comparedData) => {
-    console.log(comparedData)
     const keys = Object.keys(comparedData)
     let tree = '{\n'
     for (const key of keys) {
@@ -48,7 +47,6 @@ const makeTree = (comparedData) => {
         }   
     }
     tree += '}'
-    console.log(tree)
     return tree
 }
 
