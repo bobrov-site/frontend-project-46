@@ -28,7 +28,6 @@ const compareData = (data1, data2) => {
     }
     return key;
   });
-  console.log(comparedData, 'com data')
   return comparedData;
 };
 
