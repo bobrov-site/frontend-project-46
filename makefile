@@ -7,4 +7,5 @@ gendiff:
 lint:
 	npx eslint .
 
-fix: npx eslint --fix .
+fix: 
+	npx eslint --fix .
