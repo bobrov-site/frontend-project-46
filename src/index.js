@@ -3,8 +3,9 @@ import parseFile from './parse.js';
 // rename to Data
 const sortData = (obj) => {
   const sorted = {};
-  const keys = Object.keys(obj).sort();
-  keys.map((key) => sorted[key] = { name: key, value: obj[key] });
+  Object.keys(obj).sort().forEach((key) => {
+    sorted[key] = obj[key];
+  });
   return sorted;
 };
 
