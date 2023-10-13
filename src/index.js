@@ -1,7 +1,7 @@
 import parseFile from "./parse.js"
 import _ from "lodash"
 //rename to Data
-const sortObject = (obj) => {
+const sortData = (obj) => {
     const keys = Object.keys(obj).sort()
     const data = keys.map((key) => key = { name: key, value: obj[key] })
     return data
@@ -57,8 +57,8 @@ const makeTree = (comparedData) => {
 const genDiff = (file1, file2) => {
     const data1 = parseFile(file1)
     const data2 = parseFile(file2)
-    const sortedData1 = sortObject(data1)
-    const sortedData2 = sortObject(data2)
+    const sortedData1 = sortData(data1)
+    const sortedData2 = sortData(data2)
     const comparedData = compareData(sortedData1, sortedData2)
     const tree = makeTree(comparedData)
     return tree
