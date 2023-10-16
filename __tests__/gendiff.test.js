@@ -1,12 +1,25 @@
 import { readFileSync } from 'node:fs';
 import { test, expect } from '@jest/globals';
 import genDiff from '../src/index.js';
+import path from 'node:path';
 
-test('shoud be equal to expected', () => {
-  const expected = readFileSync('__fixtures__/expectedFile.txt', 'utf8');
-  const file1 = './__fixtures__/file1.json';
-  const file2 = './__fixtures__/file2.json';
+describe('gendiff', () => {
+  test('shoud be equal string data from json file', () => {
+    const expected = readFileSync('__fixtures__/expectedFile.txt', 'utf8');
+    
+    const file1 = './__fixtures__/file1.json';
+    const file2 = './__fixtures__/file2.json';
+  
+    const resived = genDiff(file1, file2);
+    expect(resived).toBe(expected);
+  });
+  test('shoud be equal string data from yaml file', () => {
+    const expected = readFileSync('__fixtures__/expectedFile.txt', 'utf8');
+    
+    const file1 = './__fixtures__/file1.yml';
+    const file2 = './__fixtures__/file2.yml';
 
-  const resived = genDiff(file1, file2);
-  expect(resived).toBe(expected);
-});
+    const resived = genDiff(file1, file2);
+    expect(resived).toBe(expected)
+  })
+})
