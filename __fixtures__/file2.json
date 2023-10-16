@@ -1,5 +1,5 @@
 {
-    "timeout": 30,
-    "verbose": true,
+    "timeout": 20,
+    "verbose": false,
     "host": "google.com"
 }
