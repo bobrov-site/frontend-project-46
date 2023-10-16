@@ -12,7 +12,7 @@ const getFileParse = (data, fileType) => {
     case '.json':
       return JSON.parse(data);
     case '.yml':
-      return yaml.load(fs.readFileSync(getFilePath(file), 'utf-8'));
+      return yaml.load(data);
     default:
       throw new Error(`Unknown extension: '${fileType}'!`);
   }
