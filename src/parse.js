@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { cwd } from 'node:process';
+import yaml from 'js-yaml'
 
 const getFilePath = (file) => path.resolve(cwd(), file);
 
@@ -10,6 +11,8 @@ const getFileParse = (data, fileType) => {
   switch (fileType) {
     case '.json':
       return JSON.parse(data);
+    case '.yml':
+      return yaml.load(fs.readFileSync(getFilePath(file), 'utf-8'));
     default:
       throw new Error(`Unknown extension: '${fileType}'!`);
   }
