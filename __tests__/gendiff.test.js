@@ -36,6 +36,6 @@ test('shoud be equal file1.json and file2.yml to string data', () => {
   const file1 = './__fixtures__/file1.json';
   const file2 = './__fixtures__/file2.yml';
 
-  const resived = genDiff(file1, file2)
-  expect(resived).toBe(expected)
-})
+  const resived = genDiff(file1, file2);
+  expect(resived).toBe(expected);
+});
