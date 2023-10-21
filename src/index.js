@@ -15,10 +15,10 @@ const compareData = (data1, data2) => {
   //
   const comparedData2 = uniqKeys.map((key) => {
     if (!_.has(data2, key)) {
-      return {name: key, status: 'deleted', value1: data1[key]}
+      return {name: key, status: 'deleted', children: data1[key]}
     }
     if (_.has(data2, key) && !_.has(data1, key)) {
-      return {name: key, status: 'added', value2: data2[key]}
+      return {name: key, status: 'added', children: data2[key]}
     }
     if (_.has(data2, key)) {
       const children = {...data1[key], ...data2[key]}
@@ -26,7 +26,6 @@ const compareData = (data1, data2) => {
     }
     return key
   })
-  console.log(comparedData2, 'cmp2')
   const comparedData = uniqKeys.map((key) => {
     if (!_.has(data2, key)) {
       return { name: key, status: 'deleted', value1: data1[key] };
