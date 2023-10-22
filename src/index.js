@@ -12,43 +12,30 @@ const sortData = (obj) => {
 // TODO поменять логику обхода
 const compareData = (data1, data2) => {
   const uniqKeys = _.union(Object.keys(data1), Object.keys(data2));
-  //
-  const comparedData2 = uniqKeys.map((key) => {
-    if (!_.has(data2, key)) {
-      return {name: key, status: 'deleted', children: data1[key]}
+  const sortedKeys = _.sortBy(uniqKeys)
+  return sortedKeys.map((key) => {
+    if (typeof data1[key] === 'object' && typeof data2[key] === 'object') {
+      return {name: key,  status: 'nested', children: compareData(data1[key], data2[key]) };
     }
-    if (_.has(data2, key) && !_.has(data1, key)) {
-      return {name: key, status: 'added', children: data2[key]}
+    if (!Object.hasOwn(data1, key)) {
+      return { name: key, status: 'added', value2: data2[key], };
     }
-    if (_.has(data2, key)) {
-      const children = {...data1[key], ...data2[key]}
-      const sortedChildren = sortData(children);
+    if (!Object.hasOwn(data2, key)) {
+      return { key, status: 'deleted', value1: data1[key] };
     }
-    return key
+    if (data1[key] === data2[key]) {
+      return { key, status: 'same', value: data1[key] };
+    }
+    return {
+      key, status: 'updated', value1: data1[key], value2: data2[key],
+    };
   })
-  const comparedData = uniqKeys.map((key) => {
-    if (!_.has(data2, key)) {
-      return { name: key, status: 'deleted', value1: data1[key] };
-    }
-    if (!_.has(data1, key) && _.has(data2, key)) {
-      return { name: key, status: 'added', value2: data2[key] };
-    }
-    if (_.has(data2, key) && data1[key] !== data2[key] && data1[key] !== undefined) {
-      return {
-        name: key, status: 'updated', value1: data1[key], value2: data2[key],
-      };
-    }
-    if (_.has(data2, key) && data1[key] === data2[key]) {
-      return { name: key, status: 'same', value1: data1[key] };
-    }
-    return key;
-  });
-  return comparedData;
 };
 
 const addMargin = (marginCount, margin = ' ') => _.repeat(margin, marginCount);
 
 const makeTree = (comparedData) => {
+  console.log(comparedData, 'comparedData')
   const data = comparedData.map((item) => {
     if (item.status === 'deleted') {
       return `${addMargin(2)}- ${item.name}: ${item.value1}`;
