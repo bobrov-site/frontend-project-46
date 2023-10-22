@@ -21,10 +21,10 @@ const compareData = (data1, data2) => {
       return { name: key, status: 'added', value2: data2[key], };
     }
     if (!Object.hasOwn(data2, key)) {
-      return { key, status: 'deleted', value1: data1[key] };
+      return {name: key, status: 'deleted', value1: data1[key] };
     }
     if (data1[key] === data2[key]) {
-      return { key, status: 'same', value: data1[key] };
+      return {name: key, status: 'same', value: data1[key] };
     }
     return {
       key, status: 'updated', value1: data1[key], value2: data2[key],
@@ -35,9 +35,9 @@ const compareData = (data1, data2) => {
 const addMargin = (marginCount, margin = ' ') => _.repeat(margin, marginCount);
 
 const makeTree = (comparedData) => {
-  console.log(comparedData, 'comparedData')
   const data = comparedData.map((item) => {
     if (item.status === 'deleted') {
+      console.log(`${addMargin(2)}- ${item.name}: ${item.value1}`)
       return `${addMargin(2)}- ${item.name}: ${item.value1}`;
     }
     if (item.status === 'added') {
