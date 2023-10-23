@@ -2,11 +2,11 @@ import _ from 'lodash';
 
 const addMargin = (marginCount, marginSymbol = ' ') => _.repeat(marginSymbol, marginCount);
 
-const getString = (data, depth) => {
-  if (typeof data !== 'object' || data === null) {
-    return `${data}`;
+const getString = (item, depth) => {
+  if (typeof item !== 'object' || item === null) {
+    return `${item}`;
   }
-  const str = Object.entries(data).map(([key, value]) => `${addMargin(depth * 4 - (-3))} ${key}: ${getString(value, depth + 1)}`);
+  const str = Object.entries(item).map(([key, value]) => `${addMargin(depth * 4 - (-3))} ${key}: ${getString(value, depth + 1)}`);
   return `{\n${str.join('\n')}\n${addMargin(depth * 4 - 0)}}`;
 };
 
