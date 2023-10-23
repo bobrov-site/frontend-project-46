@@ -52,7 +52,7 @@ describe('gendiff stylish', () => {
 
 describe('gendiff plain', () => {
   test('shoud be equal string data from json file', () => {
-    const expected = readFile('expectedFile.txt');
+    const expected = readFile('expectedFilePlain.txt');
   
     const file1 = getFixturePath('file1.json');
     const file2 = getFixturePath('file2.json');
