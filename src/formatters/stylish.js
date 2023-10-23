@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const addMargin = (marginCount, marginSymbol = ' ') => _.repeat(marginSymbol, marginCount);
 
 const getString = (data, depth) => {
