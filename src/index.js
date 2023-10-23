@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import parseFile from './parse.js';
+import setFormatter from './formatters/index.js';
 // rename to Data
 const sortData = (obj) => {
   const sorted = {};
@@ -65,7 +66,7 @@ const makeTree = (comparedData, depth = 1) => {
   return `{\n${data.join('\n')}\n${addMargin(depth * 4 - 4)}}`;
 };
 
-const genDiff = (file1, file2) => {
+const genDiff = (file1, file2, formatter = 'stylish') => {
   const data1 = parseFile(file1);
   const data2 = parseFile(file2);
   const sortedData1 = sortData(data1);
