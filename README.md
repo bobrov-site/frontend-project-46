@@ -7,7 +7,7 @@
 
 ![nodejs workflow](https://github.com/bobrov-site/frontend-project-46/actions/workflows/nodejs.yml/badge.svg)
 
-## Example of working
+## Compare .json files and showing --version and --help commands
 
 [![asciicast](https://asciinema.org/a/QEwY6AepHEjXDE1pXyiqsLA4P.svg)](https://asciinema.org/a/QEwY6AepHEjXDE1pXyiqsLA4P)
 
