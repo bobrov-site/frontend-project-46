@@ -23,6 +23,7 @@ const compareData = (data1, data2) => {
     if (!Object.hasOwn(data2, key)) {
       return {name: key, status: 'deleted', value1: data1[key] };
     }
+    
     if (data1[key] === data2[key]) {
       return {name: key, status: 'same', value: data1[key] };
     }
@@ -32,6 +33,13 @@ const compareData = (data1, data2) => {
 
 const addMargin = (marginCount, marginSymbol = ' ') => _.repeat(marginSymbol, marginCount);
 
+const getString = (data) => {
+  if (typeof data !== 'object' || data === null) {
+    return data
+  }
+  return Object.entries(data).map(([key, value]) => `{\n${key}: ${getString(value)}`)
+}
+
 const makeTree = (comparedData, depth = 1) => {
   // console.log(comparedData, 'data')
   const data = comparedData.map((item) => {
@@ -39,22 +47,22 @@ const makeTree = (comparedData, depth = 1) => {
       return `${addMargin(depth * 4 - 0)}${item.name}: ${makeTree(item.children, depth + 1)}`;
     }
     if (item.status === 'deleted') {
-      return `${addMargin(depth * 4 - 2)}- ${item.name}: ${item.value1}`;
+      return `${addMargin(depth * 4 - 2)}- ${item.name}: ${getString(item.value1)}`;
     }
     if (item.status === 'added') {
-      return `${addMargin(depth * 4 - 2)}+ ${item.name}: ${item.value2}`;
+      return `${addMargin(depth * 4 - 2)}+ ${item.name}: ${getString(item.value2)}`;
     }
     if (item.status === 'updated') {
-      const str1 = `${addMargin(depth * 4 - 2)}- ${item.name}: ${item.value1}`;
-      const str2 = `${addMargin(depth * 4 - 2)}+ ${item.name}: ${item.value2}`;
+      const str1 = `${addMargin(depth * 4 - 2)}- ${item.name}: ${getString(item.value1)}`;
+      const str2 = `${addMargin(depth * 4 - 2)}+ ${item.name}: ${getString(item.value2)}`;
       return `${str1}\n${str2}`;
     }
     if (item.status === 'same') {
-      return `${addMargin(depth * 4 - 2)}${item.name}: ${item.value}`;
+      return `${addMargin(depth * 4 - 0   )}${item.name}: ${getString(item.value)}`;
     }
     return item;
   });
-  return `{\n${data.join(' \n')}\n}`;
+  return `{\n${data.join('\n')}\n}`;
 };
 
 const genDiff = (file1, file2) => {
