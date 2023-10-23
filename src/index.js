@@ -33,11 +33,13 @@ const compareData = (data1, data2) => {
 
 const addMargin = (marginCount, marginSymbol = ' ') => _.repeat(marginSymbol, marginCount);
 
-const getString = (data) => {
+const getString = (data, depth) => {
   if (typeof data !== 'object' || data === null) {
     return data
   }
-  return Object.entries(data).map(([key, value]) => `{\n${key}: ${getString(value)}`)
+  return Object.entries(data).map(([key, value]) => {
+    return `{\n${addMargin(depth * 4 - 0)}${key}: ${getString(value)}\n${addMargin(depth * 4 - 0)}}`
+  })
 }
 
 const makeTree = (comparedData, depth = 1) => {
@@ -47,14 +49,14 @@ const makeTree = (comparedData, depth = 1) => {
       return `${addMargin(depth * 4 - 0)}${item.name}: ${makeTree(item.children, depth + 1)}`;
     }
     if (item.status === 'deleted') {
-      return `${addMargin(depth * 4 - 2)}- ${item.name}: ${getString(item.value1)}`;
+      return `${addMargin(depth * 4 - 2)}- ${item.name}: ${getString(item.value1, depth)}`;
     }
     if (item.status === 'added') {
-      return `${addMargin(depth * 4 - 2)}+ ${item.name}: ${getString(item.value2)}`;
+      return `${addMargin(depth * 4 - 2)}+ ${item.name}: ${getString(item.value2, depth)}`;
     }
     if (item.status === 'updated') {
-      const str1 = `${addMargin(depth * 4 - 2)}- ${item.name}: ${getString(item.value1)}`;
-      const str2 = `${addMargin(depth * 4 - 2)}+ ${item.name}: ${getString(item.value2)}`;
+      const str1 = `${addMargin(depth * 4 - 2)}- ${item.name}: ${getString(item.value1, depth)}`;
+      const str2 = `${addMargin(depth * 4 - 2)}+ ${item.name}: ${getString(item.value2, depth)}`;
       return `${str1}\n${str2}`;
     }
     if (item.status === 'same') {
