@@ -35,15 +35,13 @@ const addMargin = (marginCount, marginSymbol = ' ') => _.repeat(marginSymbol, ma
 
 const getString = (data, depth) => {
   if (typeof data !== 'object' || data === null) {
-    return data
+    return `${data}`
   }
-  return Object.entries(data).map(([key, value]) => {
-    return `{\n${addMargin(depth * 4 - (-2))}${key}: ${getString(value)}\n${addMargin(depth * 4 - 0)}}`
-  })
+  const str = Object.entries(data).map(([key, value]) => `${addMargin(depth * 4 - (-3))} ${key}: ${getString(value, depth + 1)}`)
+  return `{\n${str.join('\n')}\n${addMargin(depth * 4 - 0)}}`
 }
 
 const makeTree = (comparedData, depth = 1) => {
-  // console.log(comparedData, 'data')
   const data = comparedData.map((item) => {
     if (item.status === 'nested') {
       return `${addMargin(depth * 4 - 0)}${item.name}: ${makeTree(item.children, depth + 1)}`;
@@ -60,11 +58,11 @@ const makeTree = (comparedData, depth = 1) => {
       return `${str1}\n${str2}`;
     }
     if (item.status === 'same') {
-      return `${addMargin(depth * 4 - 0   )}${item.name}: ${getString(item.value)}`;
+      return `${addMargin(depth * 4 - 0)}${item.name}: ${getString(item.value)}`;
     }
     return item;
   });
-  return `{\n${data.join('\n')}\n}`;
+  return `{\n${data.join('\n')}\n${addMargin(depth * 4 - 4)}}`;
 };
 
 const genDiff = (file1, file2) => {
