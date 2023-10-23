@@ -38,7 +38,7 @@ const getString = (data, depth) => {
     return data
   }
   return Object.entries(data).map(([key, value]) => {
-    return `{\n${addMargin(depth * 4 - 0)}${key}: ${getString(value)}\n${addMargin(depth * 4 - 0)}}`
+    return `{\n${addMargin(depth * 4 - (-2))}${key}: ${getString(value)}\n${addMargin(depth * 4 - 0)}}`
   })
 }
 
