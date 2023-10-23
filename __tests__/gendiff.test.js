@@ -12,7 +12,7 @@ const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf8');
 
 describe('gendiff stylish', () => {
   test('shoud be equal string data from json file', () => {
-    const expected = readFile('expectedFile.txt');
+    const expected = readFile('expectedFileStylish.txt');
   
     const file1 = getFixturePath('file1.json');
     const file2 = getFixturePath('file2.json');
@@ -21,7 +21,7 @@ describe('gendiff stylish', () => {
     expect(resived).toBe(expected);
   });
   test('shoud be equal string data from .yml file', () => {
-    const expected = readFile('expectedFile.txt');
+    const expected = readFile('expectedFileStylish.txt');
   
     const file1 = getFixturePath('file1.yml');
     const file2 = getFixturePath('file2.yml');
@@ -30,7 +30,7 @@ describe('gendiff stylish', () => {
     expect(resived).toBe(expected);
   });
   test('shoud be equal string data from .yaml file', () => {
-    const expected = readFile('expectedFile.txt');
+    const expected = readFile('expectedFileStylish.txt');
   
     const file1 = getFixturePath('file1.yaml');
     const file2 = getFixturePath('file2.yaml');
@@ -40,7 +40,7 @@ describe('gendiff stylish', () => {
   });
   
   test('shoud be equal file1.json and file2.yml to string data', () => {
-    const expected = readFile('expectedFile.txt');
+    const expected = readFile('expectedFileStylish.txt');
   
     const file1 = getFixturePath('file1.json');
     const file2 = getFixturePath('file2.yaml');
