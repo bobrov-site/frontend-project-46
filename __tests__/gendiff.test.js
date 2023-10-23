@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { test, expect } from '@jest/globals';
+import { test, expect, describe } from '@jest/globals';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import genDiff from '../src/index.js';
@@ -46,6 +46,18 @@ describe('gendiff stylish', () => {
     const file2 = getFixturePath('file2.yaml');
   
     const resived = genDiff(file1, file2);
+    expect(resived).toBe(expected);
+  });
+})
+
+describe('gendiff plain', () => {
+  test('shoud be equal string data from json file', () => {
+    const expected = readFile('expectedFile.txt');
+  
+    const file1 = getFixturePath('file1.json');
+    const file2 = getFixturePath('file2.json');
+  
+    const resived = genDiff(file1, file2, 'plain');
     expect(resived).toBe(expected);
   });
 })
