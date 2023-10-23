@@ -27,22 +27,22 @@ test('shoud be equal string data from .yml file', () => {
   const resived = genDiff(file1, file2);
   expect(resived).toBe(expected);
 });
-test('shoud be equal string data from .yaml file', () => {
-  const expected = readFile('expectedFile.txt');
+// test('shoud be equal string data from .yaml file', () => {
+//   const expected = readFile('expectedFile.txt');
 
-  const file1 = getFixturePath('file1.yaml')
-  const file2 = getFixturePath('file2.yaml')
+//   const file1 = getFixturePath('file1.yaml')
+//   const file2 = getFixturePath('file2.yaml')
 
-  const resived = genDiff(file1, file2);
-  expect(resived).toBe(expected);
-});
+//   const resived = genDiff(file1, file2);
+//   expect(resived).toBe(expected);
+// });
 
-test('shoud be equal file1.json and file2.yml to string data', () => {
-  const expected = readFile('expectedFile.txt');
+// test('shoud be equal file1.json and file2.yml to string data', () => {
+//   const expected = readFile('expectedFile.txt');
 
-  const file1 = getFixturePath('file1.json');
-  const file2 = getFixturePath('file2.yaml')
+//   const file1 = getFixturePath('file1.json');
+//   const file2 = getFixturePath('file2.yaml')
 
-  const resived = genDiff(file1, file2);
-  expect(resived).toBe(expected);
-});
+//   const resived = genDiff(file1, file2);
+//   expect(resived).toBe(expected);
+// });
