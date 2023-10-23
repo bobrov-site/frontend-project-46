@@ -9,8 +9,6 @@ const sortData = (obj) => {
   });
   return sorted;
 };
-
-// TODO поменять логику обхода
 const compareData = (data1, data2) => {
   const uniqKeys = _.union(Object.keys(data1), Object.keys(data2));
   const sortedKeys = _.sortBy(uniqKeys)
