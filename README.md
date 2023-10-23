@@ -10,3 +10,7 @@
 ## Example of working
 
 [![asciicast](https://asciinema.org/a/QEwY6AepHEjXDE1pXyiqsLA4P.svg)](https://asciinema.org/a/QEwY6AepHEjXDE1pXyiqsLA4P)
+
+## Compare with formatter 'stylish' for .json files
+
+[![asciicast](https://asciinema.org/a/fzCW6swmlpH9XUluA5RHz3m61.svg)](https://asciinema.org/a/fzCW6swmlpH9XUluA5RHz3m61)
