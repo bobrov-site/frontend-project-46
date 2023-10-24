@@ -1,22 +1,15 @@
-const getString = (item) => {
-    if (item.status === 'added') {
-        if (typeof item.value2 !== 'object' && typeof item.value2 !== 'boolean' || item.value2 === null) {
-            return `'${item.value2}'`
-        }
-        if (typeof item.value2 === 'boolean') {
-            return `${item.value2}`
-        }
-        return `[complex value]`
+const getString = (value) => {
+    if (typeof value !== 'object' && typeof value !== 'boolean') {
+        return `'${value}'`
     }
-    if (item.status === 'deleted') {
-        return ``
+    if (value === null) {
+        return 'null'
     }
+    if (typeof value === 'boolean') {
+        return `${value}`
+    }
+    return `[complex value]`
 }
-
-const getProperty = (item) => {
-
-}
-
 const makePlain = (comparedData, path = '') => {
     const data = comparedData.map((item) => {
         const itemPath = `${path}${item.name}`;
@@ -24,12 +17,16 @@ const makePlain = (comparedData, path = '') => {
             return makePlain(item.children, `${itemPath}.`)
         }
         if (item.status === 'added') {
-            return `Property '${itemPath}' was added with value: ${getString(item)}`
+            return `Property '${itemPath}' was added with value: ${getString(item.value2)}`
         }
         if (item.status === 'deleted') {
             return `Property '${itemPath}' was removed`
         }
+        if (item.status === 'updated') {
+            return `Property '${itemPath}' was updated. From ${getString(item.value1)} to ${getString(item.value2)}`
+        }
     })
+    console.log(`${data.join('\n')}`)
     return `${data.join('\n')}`
 }
 
