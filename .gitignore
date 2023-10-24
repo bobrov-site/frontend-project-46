@@ -2,3 +2,5 @@
 node_modules
 .DS_Store
 coverage
+fileTest1.json
+fileTest2.json
