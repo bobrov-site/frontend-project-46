@@ -14,3 +14,7 @@
 ## Compare with formatter 'stylish' for .json files
 
 [![asciicast](https://asciinema.org/a/fzCW6swmlpH9XUluA5RHz3m61.svg)](https://asciinema.org/a/fzCW6swmlpH9XUluA5RHz3m61)
+
+## Compare with formatter 'plain' for .json files
+
+[![asciicast](https://asciinema.org/a/g0yaqnUyuIPbWybc4zyEfyTLg.svg)](https://asciinema.org/a/g0yaqnUyuIPbWybc4zyEfyTLg)
