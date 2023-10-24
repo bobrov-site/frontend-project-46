@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import parseFile from './parse.js';
 import compareData from './compare.js';
 import setFormatter from './formatters/index.js';
