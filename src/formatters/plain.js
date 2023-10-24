@@ -1,14 +1,33 @@
-const getString = (data) => {
-    if (typeof data !== 'object' || data === null) {
-
+const getString = (item) => {
+    if (item.status === 'added') {
+        if (typeof item.value2 !== 'object' && typeof item.value2 !== 'boolean' || item.value2 === null) {
+            return `'${item.value2}'`
+        }
+        if (typeof item.value2 === 'boolean') {
+            return `${item.value2}`
+        }
+        return `[complex value]`
     }
-    return `[complex value]`
+    if (item.status === 'deleted') {
+        return ``
+    }
 }
 
-const makePlain = (comparedData, depth = 1) => {
+const getProperty = (item) => {
+
+}
+
+const makePlain = (comparedData, path = '') => {
     const data = comparedData.map((item) => {
+        const itemPath = `${path}${item.name}`;
+        if (item.status === 'nested') {
+            return makePlain(item.children, `${itemPath}.`)
+        }
         if (item.status === 'added') {
-            return `Property '${item.name}' was added with value: ${getString(item.value2)}`
+            return `Property '${itemPath}' was added with value: ${getString(item)}`
+        }
+        if (item.status === 'deleted') {
+            return `Property '${itemPath}' was removed`
         }
     })
     return `${data.join('\n')}`
