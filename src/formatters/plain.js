@@ -1,34 +1,35 @@
 const getString = (value) => {
-    if (typeof value !== 'object' && typeof value !== 'boolean') {
-        return `'${value}'`
-    }
-    if (value === null) {
-        return 'null'
-    }
-    if (typeof value === 'boolean') {
-        return `${value}`
-    }
-    return `[complex value]`
-}
+  if (typeof value !== 'object' && typeof value !== 'boolean') {
+    return `'${value}'`;
+  }
+  if (value === null) {
+    return 'null';
+  }
+  if (typeof value === 'boolean') {
+    return `${value}`;
+  }
+  return '[complex value]';
+};
 const makePlain = (comparedData, path = '') => {
-    const data = comparedData.map((item) => {
-        const itemPath = `${path}${item.name}`;
-        if (item.status === 'nested') {
-            return makePlain(item.children, `${itemPath}.`)
-        }
-        if (item.status === 'added') {
-            return `Property '${itemPath}' was added with value: ${getString(item.value2)}`
-        }
-        if (item.status === 'deleted') {
-            return `Property '${itemPath}' was removed`
-        }
-        if (item.status === 'updated') {
-            return `Property '${itemPath}' was updated. From ${getString(item.value1)} to ${getString(item.value2)}`
-        }
-    })
-    return `${data.filter((item) => item !== undefined).join('\n')}`
-}
+  const data = comparedData.map((item) => {
+    const itemPath = `${path}${item.name}`;
+    if (item.status === 'nested') {
+      return makePlain(item.children, `${itemPath}.`);
+    }
+    if (item.status === 'added') {
+      return `Property '${itemPath}' was added with value: ${getString(item.value2)}`;
+    }
+    if (item.status === 'deleted') {
+      return `Property '${itemPath}' was removed`;
+    }
+    if (item.status === 'updated') {
+      return `Property '${itemPath}' was updated. From ${getString(item.value1)} to ${getString(item.value2)}`;
+    }
+    throw new Error(`Unknown status: '${item.status}'!`);
+  });
+  return `${data.filter((item) => item !== undefined).join('\n')}`;
+};
 
-const setPlain = (comparedData) => makePlain(comparedData)
+const setPlain = (comparedData) => makePlain(comparedData);
 
-export default setPlain
+export default setPlain;

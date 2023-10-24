@@ -6,7 +6,7 @@ const setFormatter = (data, format) => {
     case 'stylish':
       return setStylish(data);
     case 'plain':
-      return setPlain(data)
+      return setPlain(data);
     default:
       throw new Error(`Unknown format: '${format}'!`);
   }
