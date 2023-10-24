@@ -1,11 +1,11 @@
 const getString = (value) => {
-  if (typeof value !== 'object' && typeof value !== 'boolean') {
+  if (typeof value !== 'object' && typeof value !== 'boolean' && typeof value !== 'number') {
     return `'${value}'`;
   }
   if (value === null) {
     return 'null';
   }
-  if (typeof value === 'boolean') {
+  if (typeof value === 'boolean' || typeof value === 'number') {
     return `${value}`;
   }
   return '[complex value]';
