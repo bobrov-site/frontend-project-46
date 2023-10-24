@@ -26,8 +26,7 @@ const makePlain = (comparedData, path = '') => {
             return `Property '${itemPath}' was updated. From ${getString(item.value1)} to ${getString(item.value2)}`
         }
     })
-    console.log(`${data.join('\n')}`)
-    return `${data.join('\n')}`
+    return `${data.filter((item) => item !== undefined).join('\n')}`
 }
 
 const setPlain = (comparedData) => makePlain(comparedData)
