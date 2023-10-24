@@ -11,7 +11,8 @@ const getString = (value) => {
   return '[complex value]';
 };
 const makePlain = (comparedData, path = '') => {
-  const data = comparedData.map((item) => {
+  const filtredData = comparedData.filter((item) => item.status !== 'same');
+  const data = filtredData.map((item) => {
     const itemPath = `${path}${item.name}`;
     if (item.status === 'nested') {
       return makePlain(item.children, `${itemPath}.`);
@@ -27,7 +28,7 @@ const makePlain = (comparedData, path = '') => {
     }
     throw new Error(`Unknown status: '${item.status}'!`);
   });
-  return `${data.filter((item) => item !== undefined).join('\n')}`;
+  return `${data.join('\n')}`;
 };
 
 const setPlain = (comparedData) => makePlain(comparedData);
