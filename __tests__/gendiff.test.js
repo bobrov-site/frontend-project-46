@@ -127,4 +127,4 @@ describe('gendiff json', () => {
     const resived = genDiff(file1, file2);
     expect(resived).toBe(expected);
   });
-})
+});
