@@ -4,9 +4,10 @@ import setFormatter from './formatters/index.js';
 // rename to Data
 const sortData = (obj) => {
   const sorted = {};
-  Object.keys(obj).sort().forEach((key) => {
+  _.sortBy(Object.keys(obj)).forEach((key) => {
     sorted[key] = obj[key];
   });
+  console.log(sorted)
   return sorted;
 };
 const compareData = (data1, data2) => {
