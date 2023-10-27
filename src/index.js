@@ -7,11 +7,10 @@ import setFormatter from './formatters/index.js';
 
 const getAbsoluteFilePath = (file) => path.resolve(cwd(), file);
 
-const getFileType = (file) => path.extname(file);
+const getFileType = (file) => path.extname(file).replace('.', '');
 
 const readFile = (file) => {
   const filePath = getAbsoluteFilePath(file);
-  console.log(filePath)
   const fileData = readFileSync(filePath, 'utf8');
   return fileData;
 };
