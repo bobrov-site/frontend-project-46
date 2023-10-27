@@ -1,11 +1,4 @@
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
-import { cwd } from 'node:process';
 import yaml from 'js-yaml';
-
-const getFilePath = (file) => path.resolve(cwd(), file);
-
-const getFileType = (file) => path.extname(file);
 
 const getFileParse = (data, fileType) => {
   switch (fileType) {
@@ -20,10 +13,7 @@ const getFileParse = (data, fileType) => {
   }
 };
 
-const parseFile = (file) => {
-  const filePath = getFilePath(file);
-  const fileData = readFileSync(filePath, 'utf8');
-  const fileType = getFileType(file);
+const parseFile = (fileData, fileType) => {
   const parsedData = getFileParse(fileData, fileType);
   return parsedData;
 };
