@@ -7,7 +7,7 @@ import makeReportDiff from './formatters/index.js';
 
 const buildFullPathToFile = (file) => path.resolve(cwd(), file);
 
-const extractFileType = (file) => path.extname(file).replace('.', '');
+const extractFileFormat = (file) => path.extname(file).replace('.', '');
 
 const readFile = (file) => {
   const filePath = buildFullPathToFile(file);
@@ -16,8 +16,8 @@ const readFile = (file) => {
 };
 
 const genDiff = (file1, file2, formatter = 'stylish') => {
-  const fileType1 = extractFileType(file1);
-  const fileType2 = extractFileType(file2);
+  const fileType1 = extractFileFormat(file1);
+  const fileType2 = extractFileFormat(file2);
   const fileData1 = readFile(file1);
   const fileData2 = readFile(file2);
   const data1 = parseFile(fileData1, fileType1);
