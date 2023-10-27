@@ -1,4 +1,4 @@
-const getString = (value) => {
+const makeString = (value) => {
   if (typeof value !== 'object' && typeof value !== 'boolean' && typeof value !== 'number') {
     return `'${value}'`;
   }
@@ -18,13 +18,13 @@ const makePlain = (comparedData, path = '') => {
       return makePlain(item.children, `${itemPath}.`);
     }
     if (item.status === 'added') {
-      return `Property '${itemPath}' was added with value: ${getString(item.value2)}`;
+      return `Property '${itemPath}' was added with value: ${makeString(item.value2)}`;
     }
     if (item.status === 'deleted') {
       return `Property '${itemPath}' was removed`;
     }
     if (item.status === 'updated') {
-      return `Property '${itemPath}' was updated. From ${getString(item.value1)} to ${getString(item.value2)}`;
+      return `Property '${itemPath}' was updated. From ${makeString(item.value1)} to ${makeString(item.value2)}`;
     }
     throw new Error(`Unknown status: '${item.status}'!`);
   });
