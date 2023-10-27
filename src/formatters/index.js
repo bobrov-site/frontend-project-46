@@ -1,11 +1,11 @@
-import setStylish from './stylish.js';
+import buildStylish from './stylish.js';
 import setPlain from './plain.js';
 import setJson from './json.js';
 
-const setFormatter = (data, format) => {
+const makeReportDiff = (data, format) => {
   switch (format) {
     case 'stylish':
-      return setStylish(data);
+      return buildStylish(data);
     case 'plain':
       return setPlain(data);
     case 'json':
@@ -15,4 +15,4 @@ const setFormatter = (data, format) => {
   }
 };
 
-export default setFormatter;
+export default makeReportDiff;

@@ -3,7 +3,7 @@ import path from 'node:path';
 import { cwd } from 'node:process';
 import parseFile from './parse.js';
 import compareData from './compare.js';
-import setFormatter from './formatters/index.js';
+import makeReportDiff from './formatters/index.js';
 
 const buildFullPath = (file) => path.resolve(cwd(), file);
 
@@ -23,7 +23,7 @@ const genDiff = (file1, file2, formatter = 'stylish') => {
   const data1 = parseFile(fileData1, fileType1);
   const data2 = parseFile(fileData2, fileType2);
   const comparedData = compareData(data1, data2);
-  const formattedData = setFormatter(comparedData, formatter);
+  const formattedData = makeReportDiff(comparedData, formatter);
   return formattedData;
 };
 
