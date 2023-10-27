@@ -12,7 +12,7 @@ const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf8');
 
 const expectedStylish = readFile('expectedFileStylish.txt');
 const expectedPlain = readFile('expectedFilePlain.txt');
-const expectedJson = readFile('expectedFileJson.txt');
+const expectedJson = readFile('expectedFileJSON.txt');
 
 const fileTypes = ['json', 'yaml', 'yml'];
 
