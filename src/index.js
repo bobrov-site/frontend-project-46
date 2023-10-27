@@ -5,12 +5,13 @@ import parseFile from './parse.js';
 import compareData from './compare.js';
 import setFormatter from './formatters/index.js';
 
-const getFilePath = (file) => path.resolve(cwd(), file);
+const getAbsoluteFilePath = (file) => path.resolve(cwd(), file);
 
 const getFileType = (file) => path.extname(file);
 
 const readFile = (file) => {
-  const filePath = getFilePath(file);
+  const filePath = getAbsoluteFilePath(file);
+  console.log(filePath)
   const fileData = readFileSync(filePath, 'utf8');
   return fileData;
 };
