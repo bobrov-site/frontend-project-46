@@ -34,6 +34,6 @@ const makeTree = (comparedData, depth = 1) => {
   return `{\n${data.join('\n')}\n${addMargin(depth * 4 - 4)}}`;
 };
 
-const buildStylish = (comparedData) => makeTree(comparedData);
+const buildStylishReportDiff = (comparedData) => makeTree(comparedData);
 
-export default buildStylish;
+export default buildStylishReportDiff;
