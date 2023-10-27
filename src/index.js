@@ -5,12 +5,12 @@ import parseFile from './parse.js';
 import compareData from './compare.js';
 import makeReportDiff from './formatters/index.js';
 
-const buildFullPath = (file) => path.resolve(cwd(), file);
+const buildFullPathToFile = (file) => path.resolve(cwd(), file);
 
 const extractFileType = (file) => path.extname(file).replace('.', '');
 
 const readFile = (file) => {
-  const filePath = buildFullPath(file);
+  const filePath = buildFullPathToFile(file);
   const fileData = readFileSync(filePath, 'utf8');
   return fileData;
 };
