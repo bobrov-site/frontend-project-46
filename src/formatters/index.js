@@ -1,5 +1,5 @@
 import buildStylish from './stylish.js';
-import setPlain from './plain.js';
+import buildPlain from './plain.js';
 import setJson from './json.js';
 
 const makeReportDiff = (data, format) => {
@@ -7,7 +7,7 @@ const makeReportDiff = (data, format) => {
     case 'stylish':
       return buildStylish(data);
     case 'plain':
-      return setPlain(data);
+      return buildPlain(data);
     case 'json':
       return setJson(data);
     default:
