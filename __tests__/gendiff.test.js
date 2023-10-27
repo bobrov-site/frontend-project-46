@@ -10,9 +10,9 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf8');
 
-const expectedStylish = readFile('expectedFileStylish.txt')
-const expectedPlain = readFile('expectedFilePlain.txt')
-const expectedJson = readFile('expectedFileJson.txt')
+const expectedStylish = readFile('expectedFileStylish.txt');
+const expectedPlain = readFile('expectedFilePlain.txt');
+const expectedJson = readFile('expectedFileJson.txt');
 
 const fileTypes = ['json', 'yaml', 'yml'];
 
@@ -24,5 +24,5 @@ describe('gendiff', () => {
     expect(genDiff(file1, file2, 'plain')).toBe(expectedPlain);
     expect(genDiff(file1, file2, 'json')).toBe(expectedJson);
     expect(genDiff(file1, file2)).toBe(expectedStylish);
-  })
-})
+  });
+});
