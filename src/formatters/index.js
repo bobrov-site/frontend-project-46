@@ -1,6 +1,6 @@
 import buildStylishReportDiff from './stylish.js';
 import buildPlainReportDiff from './plain.js';
-import setJson from './json.js';
+import buildJsonReportDiff from './json.js';
 
 const makeReportDiff = (data, format) => {
   switch (format) {
@@ -9,7 +9,7 @@ const makeReportDiff = (data, format) => {
     case 'plain':
       return buildPlainReportDiff(data);
     case 'json':
-      return setJson(data);
+      return buildJsonReportDiff(data);
     default:
       throw new Error(`Unknown format: '${format}'!`);
   }
