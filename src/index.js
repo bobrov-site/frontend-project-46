@@ -13,7 +13,7 @@ const readFile = (file) => {
   const filePath = buildFullPathToFile(file);
   const fileData = readFileSync(filePath, 'utf8');
   const data = parse(fileData, extractFileFormat(file));
-  return data
+  return data;
 };
 
 const genDiff = (file1, file2, formatter = 'stylish') => {
