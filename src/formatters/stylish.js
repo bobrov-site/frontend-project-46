@@ -12,21 +12,21 @@ const makeString = (item, depth) => {
 
 const makeTree = (comparedData, depth = 1) => {
   const data = comparedData.map((item) => {
-    if (item.status === 'nested') {
+    if (item.type === 'nested') {
       return `${addMargin(depth * 4 - 0)}${item.key}: ${makeTree(item.children, depth + 1)}`;
     }
-    if (item.status === 'deleted') {
+    if (item.type === 'deleted') {
       return `${addMargin(depth * 4 - 2)}- ${item.key}: ${makeString(item.value1, depth)}`;
     }
-    if (item.status === 'added') {
+    if (item.type === 'added') {
       return `${addMargin(depth * 4 - 2)}+ ${item.key}: ${makeString(item.value2, depth)}`;
     }
-    if (item.status === 'updated') {
+    if (item.type === 'updated') {
       const str1 = `${addMargin(depth * 4 - 2)}- ${item.key}: ${makeString(item.value1, depth)}`;
       const str2 = `${addMargin(depth * 4 - 2)}+ ${item.key}: ${makeString(item.value2, depth)}`;
       return `${str1}\n${str2}`;
     }
-    if (item.status === 'same') {
+    if (item.type === 'same') {
       return `${addMargin(depth * 4 - 0)}${item.key}: ${makeString(item.value)}`;
     }
     return item;

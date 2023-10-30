@@ -11,22 +11,22 @@ const makeString = (value) => {
   return '[complex value]';
 };
 const makePlain = (comparedData, path = '') => {
-  const filtredData = comparedData.filter((item) => item.status !== 'same');
+  const filtredData = comparedData.filter((item) => item.type !== 'same');
   const data = filtredData.map((item) => {
     const itemPath = `${path}${item.key}`;
-    if (item.status === 'nested') {
+    if (item.type === 'nested') {
       return makePlain(item.children, `${itemPath}.`);
     }
-    if (item.status === 'added') {
+    if (item.type === 'added') {
       return `Property '${itemPath}' was added with value: ${makeString(item.value2)}`;
     }
-    if (item.status === 'deleted') {
+    if (item.type === 'deleted') {
       return `Property '${itemPath}' was removed`;
     }
-    if (item.status === 'updated') {
+    if (item.type === 'updated') {
       return `Property '${itemPath}' was updated. From ${makeString(item.value1)} to ${makeString(item.value2)}`;
     }
-    throw new Error(`Unknown status: '${item.status}'!`);
+    throw new Error(`Unknown type: '${item.type}'!`);
   });
   return `${data.join('\n')}`;
 };
