@@ -1,3 +1,3 @@
-const buildJsonReportDiff = (comparedData) => JSON.stringify(comparedData);
+const makeJsonReportDiff = (comparedData) => JSON.stringify(comparedData);
 
-export default buildJsonReportDiff;
+export default makeJsonReportDiff;
