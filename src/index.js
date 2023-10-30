@@ -12,16 +12,13 @@ const extractFileFormat = (file) => path.extname(file).replace('.', '');
 const readFile = (file) => {
   const filePath = buildFullPathToFile(file);
   const fileData = readFileSync(filePath, 'utf8');
-  return fileData;
+  const data = parse(fileData, extractFileFormat(file));
+  return data
 };
 
 const genDiff = (file1, file2, formatter = 'stylish') => {
-  const fileType1 = extractFileFormat(file1);
-  const fileType2 = extractFileFormat(file2);
-  const fileData1 = readFile(file1);
-  const fileData2 = readFile(file2);
-  const data1 = parse(fileData1, fileType1);
-  const data2 = parse(fileData2, fileType2);
+  const data1 = readFile(file1);
+  const data2 = readFile(file2);
   const comparedData = compareData(data1, data2);
   const formattedData = makeReportDiff(comparedData, formatter);
   return formattedData;
