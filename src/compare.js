@@ -15,7 +15,7 @@ const compareData = (data1, data2) => {
     if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
       return { key, type: 'nested', children: compareData(data1[key], data2[key]) };
     }
-    if (_.isEqual(data1[key],data2[key])) {
+    if (_.isEqual(data1[key], data2[key])) {
       return { key, type: 'same', value: data1[key] };
     }
     return {
