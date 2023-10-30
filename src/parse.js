@@ -13,8 +13,4 @@ const parse = (data, fileType) => {
   }
 };
 
-const parseFile = (fileData, fileType) => {
-  const parsedData = parse(fileData, fileType);
-  return parsedData;
-};
-export default parseFile;
+export default parse;
