@@ -31,6 +31,6 @@ const makePlain = (comparedData, path = '') => {
   return `${data.join('\n')}`;
 };
 
-const buildPlainReportDiff = (comparedData) => makePlain(comparedData);
+const makePlainReportDiff = (comparedData) => makePlain(comparedData);
 
-export default buildPlainReportDiff;
+export default makePlainReportDiff;
