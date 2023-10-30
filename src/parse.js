@@ -1,7 +1,7 @@
 import yaml from 'js-yaml';
 
-const parse = (data, fileType) => {
-  switch (fileType) {
+const parse = (data, type) => {
+  switch (type) {
     case 'json':
       return JSON.parse(data);
     case 'yml':
@@ -9,7 +9,7 @@ const parse = (data, fileType) => {
     case 'yaml':
       return yaml.load(data);
     default:
-      throw new Error(`Unknown extension: '${fileType}'!`);
+      throw new Error(`Unknown extension: '${type}'!`);
   }
 };
 
