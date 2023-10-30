@@ -13,7 +13,7 @@ const makeString = (value) => {
 const makePlain = (comparedData, path = '') => {
   const filtredData = comparedData.filter((item) => item.status !== 'same');
   const data = filtredData.map((item) => {
-    const itemPath = `${path}${item.name}`;
+    const itemPath = `${path}${item.key}`;
     if (item.status === 'nested') {
       return makePlain(item.children, `${itemPath}.`);
     }
