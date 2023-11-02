@@ -1,16 +1,13 @@
 import _ from 'lodash';
 
 const makeString = (item) => {
-  if (!_.isObject(item) && !_.isBoolean(item) && !_.isNumber(item) && !_.isNull(item)) {
-    return `'${item}'`;
+  if (_.isObject(item)) {
+    return '[complex value]';
   }
-  if (_.isNull(item)) {
-    return null;
+  if (_.isString(item)) {
+    return `'${item}'`
   }
-  if (_.isBoolean(item) || _.isNumber(item)) {
-    return `${item}`;
-  }
-  return '[complex value]';
+  return String(item)
 };
 const makePlain = (comparedData, path = '') => {
   const filtredData = comparedData.filter((item) => item.type !== 'same');
