@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const makeString = (item) => {
   if (typeof item !== 'object' && typeof item !== 'boolean' && typeof item !== 'number') {
     return `'${item}'`;
