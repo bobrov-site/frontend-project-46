@@ -3,7 +3,7 @@ import _ from 'lodash';
 const addMargin = (marginCount, marginSymbol = ' ') => _.repeat(marginSymbol, marginCount);
 
 const makeString = (item, depth) => {
-  if (typeof item !== 'object' || item === null) {
+  if (!_.isObject(item) || item === null) {
     return `${item}`;
   }
   const str = Object.entries(item).map(([key, value]) => `${addMargin(depth * 4 - (-3))} ${key}: ${makeString(value, depth + 1)}`);
