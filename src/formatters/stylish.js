@@ -9,7 +9,7 @@ const addMargin = (depth, fullMargin = false, lol = false) => {
 
 const makeString = (item, depth) => {
   if (!_.isObject(item) || item === null) {
-    return `${item}`;
+    return String(item);
   }
   const str = Object.entries(item).map(([key, value]) => ` ${addMargin(depth + 1, true)} ${key}: ${makeString(value, depth + 1)}`);
   return `{\n${str.join('\n')}\n${addMargin(depth)}}`;
