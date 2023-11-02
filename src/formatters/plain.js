@@ -1,13 +1,13 @@
 import _ from 'lodash';
 
 const makeString = (item) => {
-  if (typeof item !== 'object' && typeof item !== 'boolean' && typeof item !== 'number') {
+  if (!_.isObject(item) && !_.isBoolean(item) && !_.isNumber(item) && !_.isNull(item)) {
     return `'${item}'`;
   }
-  if (item === null) {
-    return 'null';
+  if (_.isNull(item)) {
+    return null;
   }
-  if (typeof item === 'boolean' || typeof item === 'number') {
+  if (_.isBoolean(item) || _.isNumber(item)) {
     return `${item}`;
   }
   return '[complex value]';
