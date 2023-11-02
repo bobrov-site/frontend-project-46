@@ -1,12 +1,12 @@
-const makeString = (value) => {
-  if (typeof value !== 'object' && typeof value !== 'boolean' && typeof value !== 'number') {
-    return `'${value}'`;
+const makeString = (item) => {
+  if (typeof item !== 'object' && typeof item !== 'boolean' && typeof item !== 'number') {
+    return `'${item}'`;
   }
-  if (value === null) {
+  if (item === null) {
     return 'null';
   }
-  if (typeof value === 'boolean' || typeof value === 'number') {
-    return `${value}`;
+  if (typeof item === 'boolean' || typeof item === 'number') {
+    return `${item}`;
   }
   return '[complex value]';
 };
