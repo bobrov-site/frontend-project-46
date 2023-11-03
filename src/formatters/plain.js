@@ -9,6 +9,7 @@ const makeString = (item) => {
   }
   return String(item)
 };
+
 const makePlain = (comparedData, path = '') => {
   return comparedData
     .filter((item) => item.type !== 'same')
