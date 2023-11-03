@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
-const addMargin = (depth, fullMargin = false, lol = false) => { 
+const addMargin = (depth, fullMargin = false) => {
   if (fullMargin) {
-    return _.repeat(' ', depth * 4 - 2)
+    return _.repeat(' ', depth * 4 - 2);
   }
   return _.repeat(' ', depth * 4 - 0);
-}
+};
 
 const makeString = (item, depth) => {
   if (!_.isObject(item) || item === null) {
