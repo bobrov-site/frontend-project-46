@@ -27,7 +27,6 @@ const makePlain = (comparedData, path = '') => {
     }
     throw new Error(`Unknown type: '${item.type}'!`);
   });
-  интерполяция
   return data.join('\n');
 };
 
