@@ -11,8 +11,8 @@ const makeString = (item, depth) => {
   if (!_.isObject(item) || item === null) {
     return String(item);
   }
-  const str = Object.entries(item).map(([key, value]) => ` ${addMargin(depth + 1, true)} ${key}: ${makeString(value, depth + 1)}`);
-  return `{\n${str.join('\n')}\n${addMargin(depth)}}`;
+  const string = Object.entries(item).map(([key, value]) => ` ${addMargin(depth + 1, true)} ${key}: ${makeString(value, depth + 1)}`);
+  return `{\n${string.join('\n')}\n${addMargin(depth)}}`;
 };
 
 const makeTree = (comparedData, depth = 1) => {
@@ -27,9 +27,9 @@ const makeTree = (comparedData, depth = 1) => {
       return `${addMargin(depth, true)}+ ${item.key}: ${makeString(item.value2, depth)}`;
     }
     if (item.type === 'updated') {
-      const str1 = `${addMargin(depth, true)}- ${item.key}: ${makeString(item.value1, depth)}`;
-      const str2 = `${addMargin(depth, true)}+ ${item.key}: ${makeString(item.value2, depth)}`;
-      return `${str1}\n${str2}`;
+      const string1 = `${addMargin(depth, true)}- ${item.key}: ${makeString(item.value1, depth)}`;
+      const string2 = `${addMargin(depth, true)}+ ${item.key}: ${makeString(item.value2, depth)}`;
+      return `${string1}\n${string2}`;
     }
     if (item.type === 'same') {
       return `${addMargin(depth)}${item.key}: ${makeString(item.value)}`;
